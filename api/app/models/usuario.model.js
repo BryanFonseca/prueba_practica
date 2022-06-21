@@ -8,7 +8,7 @@ const Usuario = sequelize.define("usuarios", {
     allowNull: false,
     primaryKey: true,
   },
-  n_cedula: {
+  nCedula: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -24,7 +24,7 @@ const Usuario = sequelize.define("usuarios", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  fecha_nacimiento: {
+  fechaNacimiento: {
     type: Sequelize.DATEONLY,
     allowNull: false,
   },

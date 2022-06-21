@@ -8,6 +8,7 @@ const { dummyMiddleware } = require("./routes/helpers");
 
 // import routes
 const usuarioRoutes = require("./routes/usuario.route");
+const cursoRoutes = require("./routes/curso.route");
 
 // import models
 const Usuario = require("./app/models/usuario.model");
@@ -53,6 +54,7 @@ app.use(express.urlencoded({ extended: false }));
 //app.use("/example", exampleRoutes);
 app.use("/example", dummyMiddleware("working"));
 app.use("/usuarios", usuarioRoutes);
+app.use("/cursos", cursoRoutes);
 
 // app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(docs));
 

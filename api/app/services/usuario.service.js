@@ -7,8 +7,8 @@ exports.findOne = async (req, res, next) => {
       id: usuario.id,
       nombre: usuario.nombre,
       apellidos: usuario.apellidos,
-      cedula: usuario.n_cedula,
-      fechaNacimiento: usuario.fecha_nacimiento,
+      nCedula: usuario.nCedula,
+      fechaNacimiento: usuario.fechaNacimiento,
     }));
     res.status(200).json({
       data: usuariosParsed,
