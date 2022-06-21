@@ -11,12 +11,15 @@ const usuarioRoutes = require("./routes/usuario.route");
 
 // import models
 const Usuario = require("./app/models/usuario.model");
+const Curso = require("./app/models/curso.model");
+const Asistencia = require("./app/models/asistencia.model");
 
 // stablish models relationships
-/*
-RolDePago.belongsTo(Empleado);
-RolDePago.hasMany(Concepto);
-*/
+Usuario.hasMany(Curso);
+Curso.belongsTo(Usuario);
+
+Curso.hasMany(Asistencia);
+Asistencia.belongsTo(Curso);
 
 const app = express();
 
