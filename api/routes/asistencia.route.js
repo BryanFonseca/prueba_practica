@@ -5,7 +5,7 @@ const router = require("express").Router();
 const auth = require("../app/middlewares/is_auth");
 
 // /asistencia/all
-router.get("/all", auth.isAuth, auth.isAdmin, asistenciaController.findAll);
+router.get("/all", /*auth.isAuth, auth.isAdmin,*/ asistenciaController.findAll);
 
 // asistencias por id de curso
 // /asistencia/curso/id

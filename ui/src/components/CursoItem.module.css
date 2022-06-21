@@ -1,0 +1,12 @@
+.info {
+}
+
+.cursoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cursoContainer button {
+  margin: 0 0.5em;
+}

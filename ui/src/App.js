@@ -1,15 +1,48 @@
 import { useContext } from "react";
-import { Route, Switch } from "react-router-dom";
-import AppContext from "./context/app-context";
+import { Route, Switch, Redirect } from "react-router-dom";
+import AppContext, { AppContextProvider } from "./context/app-context";
+import Login from "./pages/Login";
+import Admin from "./pages/admin/Admin";
+import Usuario from "./pages/Usuario";
+import Layout from "./components/layout/Layout";
+import Agregar from "./pages/admin/Agregar";
+import AllCursos from "./pages/admin/AllCursos";
+import AdminContext from "./context/admin-context";
+import { AdminContextProvider } from "./context/admin-context";
+import AuthContext from "./context/auth-context";
+import Asistencia from "./pages/admin/Asistencia";
 
 function App() {
-  const ctx = useContext(AppContext);
-  console.log(ctx);
+  const { userInfo } = useContext(AuthContext);
+  const adminCtx = useContext(AdminContext);
   return (
     <Switch>
-      <Route path="/" exact>
-        Main Page
+      <Route path="/login">
+        <Login />
       </Route>
+      <Layout>
+        {userInfo.isAdmin ? (
+          <AdminContextProvider>
+            <Route path="/admin/agregar">
+              <Agregar />
+            </Route>
+            <Route path="/admin/asistencia">
+              <Asistencia />
+            </Route>
+            <Route path="/admin/all">
+              <AllCursos />
+            </Route>
+          </AdminContextProvider>
+        ) : null}
+
+        {!userInfo.isAdmin && (
+          <AppContextProvider>
+            <Route path="/" exact>
+              <Usuario />
+            </Route>
+          </AppContextProvider>
+        )}
+      </Layout>
     </Switch>
   );
 }

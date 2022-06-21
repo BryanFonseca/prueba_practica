@@ -75,6 +75,7 @@ exports.createByCursoId = async (req, res, next) => {
       fecha,
       cursoId,
     });
+    console.log("pas");
     res.status(200).json({
       id: asistenciaCreada.id,
     });
