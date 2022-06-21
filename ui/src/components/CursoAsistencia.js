@@ -12,7 +12,10 @@ const CursoAsistencia = ({ nombre, id }) => {
     const day = date.getDate();
     const fullDate = `${year}-${month}-${day}`;
     console.log(fullDate);
-    const time = `${(date.getHours + 1).toString().padStart(2, "0")}:00`;
+    const time = `${(date.getHours() + 1).toString().padStart(2, "0")}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
     ingresarRequest({
       method: "POST",
       url: `${API_BASE_URL}/asistencia/crear/`,
@@ -33,7 +36,11 @@ const CursoAsistencia = ({ nombre, id }) => {
     const day = date.getDate();
     const fullDate = `${year}-${month}-${day}`;
     console.log(fullDate);
-    const time = `${(date.getHours + 1).toString().padStart(2, "0")}:00`;
+    const time = `${(date.getHours() + 1).toString().padStart(2, "0")}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+    console.log(time);
     salirRequest({
       method: "POST",
       url: `${API_BASE_URL}/asistencia/crear/`,
