@@ -10,6 +10,7 @@ const { dummyMiddleware } = require("./routes/helpers");
 const usuarioRoutes = require("./routes/usuario.route");
 const cursoRoutes = require("./routes/curso.route");
 const asistenciaRoutes = require("./routes/asistencia.route");
+const authRoutes = require("./routes/authentication.route");
 
 // import models
 const Usuario = require("./app/models/usuario.model");
@@ -57,6 +58,7 @@ app.use("/example", dummyMiddleware("working"));
 app.use("/usuarios", usuarioRoutes);
 app.use("/cursos", cursoRoutes);
 app.use("/asistencia", asistenciaRoutes);
+app.use("/auth", authRoutes);
 
 // app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(docs));
 

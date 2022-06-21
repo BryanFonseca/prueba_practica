@@ -2,9 +2,10 @@ const asistenciaController = require("../app/controllers/asistencia.controller")
 const { body } = require("express-validator/check");
 const Asistencia = require("../app/models/asistencia.model");
 const router = require("express").Router();
+const auth = require("../app/middlewares/is_auth");
 
 // /asistencia/all
-router.get("/all", asistenciaController.findAll);
+router.get("/all", auth.isAuth, auth.isAdmin, asistenciaController.findAll);
 
 // asistencias por id de curso
 // /asistencia/curso/id
