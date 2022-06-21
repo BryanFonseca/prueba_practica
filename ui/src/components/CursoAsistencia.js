@@ -6,13 +6,20 @@ const CursoAsistencia = ({ nombre, id }) => {
   const { sendRequest: ingresarRequest } = useHttp();
   const { sendRequest: salirRequest } = useHttp();
   const ingresarHandler = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate();
+    const fullDate = `${year}-${month}-${day}`;
+    console.log(fullDate);
+    const time = `${(date.getHours + 1).toString().padStart(2, "0")}:00`;
     ingresarRequest({
       method: "POST",
       url: `${API_BASE_URL}/asistencia/crear/`,
       body: {
         tipo: "entrada",
-        hora: "14:00",
-        fecha: "2022-06-05",
+        hora: time,
+        fecha: fullDate,
         cursoId: id,
       },
     }).then(() => {
@@ -20,13 +27,20 @@ const CursoAsistencia = ({ nombre, id }) => {
     });
   };
   const salirHandler = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate();
+    const fullDate = `${year}-${month}-${day}`;
+    console.log(fullDate);
+    const time = `${(date.getHours + 1).toString().padStart(2, "0")}:00`;
     salirRequest({
       method: "POST",
       url: `${API_BASE_URL}/asistencia/crear/`,
       body: {
         tipo: "salida",
-        hora: "15:00",
-        fecha: "2022-06-05",
+        hora: time,
+        fecha: fullDate,
         cursoId: id,
       },
     }).then(() => {
