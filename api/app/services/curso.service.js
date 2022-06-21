@@ -62,7 +62,6 @@ exports.createByUserId = async (req, res, next) => {
       fechaInicio,
     });
     res.status(200).json({
-      mensaje: "Curso creado con éxito",
       cursoId: cursoCreado.id,
     });
   } catch (err) {

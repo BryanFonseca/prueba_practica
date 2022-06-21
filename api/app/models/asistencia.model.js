@@ -17,7 +17,7 @@ const Asistencia = sequelize.define("asistencias", {
     type: Sequelize.BOOLEAN,
     allowNull: false,
   },
-  fechaInicio: {
+  fecha: {
     type: Sequelize.DATEONLY,
     allowNull: false,
   },
