@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import CursoAsistencia from "../components/CursoAsistencia";
+import List from "../components/List";
 import AppContext from "../context/app-context";
 
 const Usuario = () => {
@@ -16,7 +17,7 @@ const Usuario = () => {
   }
   return (
     <div>
-      <ul>{cursosComps}</ul>
+      <List>{cursosComps}</List>
     </div>
   );
 };

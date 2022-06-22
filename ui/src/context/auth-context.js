@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useState, useReducer, useEffect } from "react";
 
 // fill up for autocompletion help
 const AuthContext = createContext({});
@@ -24,17 +24,44 @@ const initialUserInfoState = {
   token: null,
 };
 
+let isInitial = true;
 export const AuthContextProvider = (props) => {
   const [userInfo, dispatchUserAction] = useReducer(
     userInfoReducer,
     initialUserInfoState
   );
 
+  useEffect(() => {
+    // comprobar local storage
+    const authData = JSON.parse(localStorage.getItem("authData"));
+
+    if (!authData) return;
+    dispatchUserAction({
+      type: "LOGIN",
+      payload: {
+        ...authData,
+      },
+    });
+  }, []);
+
+  const dispatchLogin = (action) => {
+    dispatchUserAction(action);
+  };
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+    localStorage.setItem("authData", JSON.stringify(userInfo));
+  }, [userInfo]);
+
   return (
     <AuthContext.Provider
       value={{
         userInfo,
         dispatchUserAction,
+        dispatchLogin,
       }}
     >
       {props.children}

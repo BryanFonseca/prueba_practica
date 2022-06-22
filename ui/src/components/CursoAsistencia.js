@@ -55,11 +55,11 @@ const CursoAsistencia = ({ nombre, id }) => {
     });
   };
   return (
-    <div>
+    <li>
       <h3>{nombre}</h3>
       <button onClick={ingresarHandler}>Registrar ingreso</button>
       <button onClick={salirHandler}>Registrar salida</button>
-    </div>
+    </li>
   );
 };
 

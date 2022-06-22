@@ -25,7 +25,7 @@ const LoginFormik = () => {
     }),
   });
 
-  const { dispatchUserAction } = useContext(AuthContext);
+  const { dispatchLogin } = useContext(AuthContext);
   const { sendRequest, serverErrorMessage, isLoading } = useHttp();
 
   function onLoginHandler(values) {
@@ -38,7 +38,7 @@ const LoginFormik = () => {
       },
     })
       .then((data) => {
-        dispatchUserAction({
+        dispatchLogin({
           type: "LOGIN",
           payload: {
             isAdmin: data.isAdmin,

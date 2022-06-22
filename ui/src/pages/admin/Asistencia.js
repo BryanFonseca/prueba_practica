@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AdminContext from "../../context/admin-context";
 import AsistenciaItem from "../../components/AsistenciaItem";
-import AsistenciaList from "../../components/AsistenciaList";
+import List from "../../components/List";
 
 const Asistencia = ({ children }) => {
   const adminCtx = useContext(AdminContext);
@@ -18,7 +18,7 @@ const Asistencia = ({ children }) => {
   } else {
     asistenciaComps = null;
   }
-  return <AsistenciaList>{asistenciaComps}</AsistenciaList>;
+  return <List>{asistenciaComps}</List>;
 };
 
 export default Asistencia;

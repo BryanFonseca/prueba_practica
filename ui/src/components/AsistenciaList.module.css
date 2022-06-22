@@ -1,6 +1,0 @@
-.container {
-  padding: 1em 0;
-}
-.container > li + li {
-  margin-top: 1em;
-}

@@ -38,13 +38,13 @@ function App() {
           </AdminContextProvider>
         ) : null}
 
-        {userInfo.isAdmin === false && (
+        {userInfo.isAdmin === false ? (
           <AppContextProvider>
             <Route path="/docente/">
               <Usuario />
             </Route>
           </AppContextProvider>
-        )}
+        ) : null}
       </Layout>
     </Switch>
   );

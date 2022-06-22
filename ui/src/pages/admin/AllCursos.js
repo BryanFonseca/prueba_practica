@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ControlBar from "../../components/ControlBar";
 import CursoItem from "../../components/CursoItem";
-import CursosList from "../../components/CursosList";
+import List from "../../components/List";
 import AdminContext from "../../context/admin-context";
 
 const AllCursos = () => {
@@ -28,7 +28,7 @@ const AllCursos = () => {
       </header>
       <ControlBar />
       <section className="scrollableContainer">
-        <CursosList>{cursosComponents}</CursosList>
+        <List>{cursosComponents}</List>
       </section>
     </>
   );
