@@ -1,9 +1,4 @@
-.options {
-}
-
-.options > * {
-}
-
 .options > * + * {
-  margin-top: 0.5em;
+  display: block;
+  margin-top: 0.4em;
 }

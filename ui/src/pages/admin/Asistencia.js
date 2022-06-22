@@ -9,6 +9,7 @@ const Asistencia = ({ children }) => {
   if (adminCtx.asistencia.length > 0) {
     asistenciaComps = adminCtx.asistencia.map((asistenciaItem) => (
       <AsistenciaItem
+        key={asistenciaItem.id}
         nombre={asistenciaItem.curso.nombre}
         nombreDocente={`${asistenciaItem.usuario.nombre} ${asistenciaItem.usuario.apellidos}`}
       >
@@ -18,7 +19,11 @@ const Asistencia = ({ children }) => {
   } else {
     asistenciaComps = null;
   }
-  return <List>{asistenciaComps}</List>;
+  return (
+    <div className="scrollableContainer">
+      <List>{asistenciaComps}</List>
+    </div>
+  );
 };
 
 export default Asistencia;

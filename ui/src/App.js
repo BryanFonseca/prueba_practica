@@ -11,6 +11,7 @@ import AdminContext from "./context/admin-context";
 import { AdminContextProvider } from "./context/admin-context";
 import AuthContext from "./context/auth-context";
 import Asistencia from "./pages/admin/Asistencia";
+import Editar from "./pages/admin/Editar";
 
 function App() {
   const { userInfo } = useContext(AuthContext);
@@ -28,6 +29,9 @@ function App() {
           <AdminContextProvider>
             <Route path="/admin/agregar">
               <Agregar />
+            </Route>
+            <Route path="/admin/editar/:id">
+              <Editar />
             </Route>
             <Route path="/admin/asistencia">
               <Asistencia />

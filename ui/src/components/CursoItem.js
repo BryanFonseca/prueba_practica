@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import AdminContext from "../context/admin-context";
 import { API_BASE_URL } from "../globals";
 import useHttp from "../hooks/use-http";
@@ -26,6 +27,11 @@ const CursoItem = ({
     });
   };
 
+  const history = useHistory();
+  const editarHandler = () => {
+    history.push(`/admin/editar/${id}`);
+  };
+
   return (
     <li className={classes.cursoContainer}>
       <div className={classes.info}>
@@ -34,7 +40,7 @@ const CursoItem = ({
         <p>{`Dictado por ${nombreDocente}`}</p>
       </div>
       <div>
-        <button>Editar</button>
+        <button onClick={editarHandler}>Editar</button>
         <button onClick={eliminarHandler}>Eliminar</button>
       </div>
     </li>
