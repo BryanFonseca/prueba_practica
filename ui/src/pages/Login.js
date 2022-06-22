@@ -47,7 +47,7 @@ const LoginFormik = () => {
             token: data.token,
           },
         });
-        const path = data.isAdmin ? "/admin/all" : "/";
+        const path = data.isAdmin ? "/admin/all" : "/docente/";
         history.push(path);
       })
       .catch((err) => {});

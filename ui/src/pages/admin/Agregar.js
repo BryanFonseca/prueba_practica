@@ -32,6 +32,9 @@ const Agregar = (props) => {
           fechaInicio: values.fechaInicio,
         },
       }).then((response) => {
+        const docente = adminCtx.docentes.find(
+          (profesor) => profesor.id === +values.profesorId
+        );
         adminCtx.dispatchCursosAction({
           type: "ADD",
           payload: {
@@ -41,9 +44,9 @@ const Agregar = (props) => {
             horaSalida: values.horaSalida,
             fechaInicio: values.fechaInicio,
             docente: {
-              nombre: "",
-              apellidos: "",
-              id: 0,
+              id: docente.id,
+              nombre: docente.nombre,
+              apellidos: docente.apellidos,
             },
           },
         });
@@ -58,7 +61,7 @@ const Agregar = (props) => {
   useEffect(() => {
     sendRequest({
       method: "GET",
-      url: `${API_BASE_URL}/usuarios/all`,
+      url: `${API_BASE_URL}/usuarios/profesores/all`,
     }).then(({ data: profesores }) => {
       setProfesores(profesores);
     });

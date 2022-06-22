@@ -26,7 +26,8 @@ li {
   list-style: none;
 }
 
-h2 {
+h2,
+h3 {
   font-weight: 400;
 }
 

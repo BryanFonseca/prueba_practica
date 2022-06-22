@@ -3,11 +3,10 @@ const { body } = require("express-validator/check");
 const Usuario = require("../app/models/usuario.model");
 const router = require("express").Router();
 
-// /usuarios/all
-//router.get("/all", usuarioController.findAll);
+router.get("/profesores/all", usuarioController.findAllProfesores);
 
 // /usuarios/:id
-router.get("/:id", usuarioController.findOne);
+//router.get("/:id", usuarioController.findOne);
 
 // /usuarios/crear
 /*

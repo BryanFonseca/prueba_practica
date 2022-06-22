@@ -24,6 +24,7 @@ const cursosReducer = (state, action) => {
 export const AdminContextProvider = (props) => {
   const [cursos, dispatchCursosAction] = useReducer(cursosReducer, []);
   const [asistencia, setAsistencia] = useState([]);
+  const [docentes, setDocentes] = useState([]);
   const { sendRequest } = useHttp();
 
   useEffect(() => {
@@ -44,12 +45,23 @@ export const AdminContextProvider = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    sendRequest({
+      method: "GET",
+      url: `${API_BASE_URL}/usuarios/profesores/all`,
+    }).then(({ data: usuarios }) => {
+      // aquí técnicamente los usuarios no son solo docentes, pero de cualquier manera se filtrará con id
+      setDocentes(usuarios);
+    });
+  }, []);
+
   return (
     <AdminContext.Provider
       value={{
         cursos,
         dispatchCursosAction,
         asistencia,
+        docentes,
       }}
     >
       {props.children}

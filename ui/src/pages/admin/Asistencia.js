@@ -1,20 +1,24 @@
 import React, { useContext } from "react";
 import AdminContext from "../../context/admin-context";
+import AsistenciaItem from "../../components/AsistenciaItem";
+import AsistenciaList from "../../components/AsistenciaList";
 
 const Asistencia = ({ children }) => {
   const adminCtx = useContext(AdminContext);
   let asistenciaComps;
   if (adminCtx.asistencia.length > 0) {
     asistenciaComps = adminCtx.asistencia.map((asistenciaItem) => (
-      <li>
-        <h3>{`${asistenciaItem.curso.nombre}`} </h3>
-        <p>{`${asistenciaItem.tipo} a las ${asistenciaItem.hora}`}</p>
-      </li>
+      <AsistenciaItem
+        nombre={asistenciaItem.curso.nombre}
+        nombreDocente={`${asistenciaItem.usuario.nombre} ${asistenciaItem.usuario.apellidos}`}
+      >
+        {`${asistenciaItem.tipo} a las ${asistenciaItem.hora}`}
+      </AsistenciaItem>
     ));
   } else {
     asistenciaComps = null;
   }
-  return <ul>{asistenciaComps}</ul>;
+  return <AsistenciaList>{asistenciaComps}</AsistenciaList>;
 };
 
 export default Asistencia;

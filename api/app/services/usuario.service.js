@@ -1,8 +1,12 @@
 const Usuario = require("../models/usuario.model");
 
-exports.findOne = async (req, res, next) => {
+exports.findAllProfesores = async (req, res, next) => {
   try {
-    const usuarios = await Usuario.findAll();
+    const usuarios = await Usuario.findAll({
+      where: {
+        rol: false,
+      },
+    });
     const usuariosParsed = usuarios.map((usuario) => ({
       id: usuario.id,
       nombre: usuario.nombre,

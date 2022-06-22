@@ -17,6 +17,9 @@ function App() {
   const adminCtx = useContext(AdminContext);
   return (
     <Switch>
+      <Route path="/" exact>
+        <Login />
+      </Route>
       <Route path="/login">
         <Login />
       </Route>
@@ -35,9 +38,9 @@ function App() {
           </AdminContextProvider>
         ) : null}
 
-        {!userInfo.isAdmin && (
+        {userInfo.isAdmin === false && (
           <AppContextProvider>
-            <Route path="/" exact>
+            <Route path="/docente/">
               <Usuario />
             </Route>
           </AppContextProvider>
