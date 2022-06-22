@@ -21,6 +21,9 @@ const Asistencia = require("./app/models/asistencia.model");
 Usuario.hasMany(Curso);
 Curso.belongsTo(Usuario);
 
+Usuario.hasMany(Asistencia);
+Asistencia.belongsTo(Usuario);
+
 Curso.hasMany(Asistencia);
 Asistencia.belongsTo(Curso);
 

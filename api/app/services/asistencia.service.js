@@ -5,8 +5,21 @@ const Usuario = require("../models/usuario.model");
 exports.findAll = async (req, res, next) => {
   try {
     const asistencias = await Asistencia.findAll({
-      include: Curso,
+      include: [Curso, Usuario],
     });
+    // FUNCIONAAA
+    /*
+    const asistencias = await Asistencia.findAll({
+      include: [
+        {
+          model: Curso,
+        },
+        {
+          model: Usuario,
+        },
+      ],
+    });
+    */
     const asistenciasParsed = asistencias.map((asistencia) => ({
       id: asistencia.id,
       hora: asistencia.hora,
@@ -14,7 +27,9 @@ exports.findAll = async (req, res, next) => {
       fecha: asistencia.fecha,
       curso: { id: asistencia.curso.id, nombre: asistencia.curso.nombre },
       usuario: {
-        id: asistencia.curso.usuarioId,
+        id: asistencia.usuario.id,
+        nombre: asistencia.usuario.nombre,
+        apellidos: asistencia.usuario.apellidos,
       },
     }));
     res.status(200).json({
@@ -65,15 +80,25 @@ exports.findByCursoId = async (req, res, next) => {
   }
 };
 
+// se asume que un curso solo puede ser impartido por un docente
 exports.createByCursoId = async (req, res, next) => {
   try {
     const { tipo, hora, fecha, cursoId } = req.body;
+    const [curso] = await Curso.findAll({
+      where: {
+        id: cursoId,
+      },
+      include: Usuario,
+    });
+    const usuarioId = curso.usuario.id;
+
     const tipoInterno = tipo === "llegada" ? true : false;
     const asistenciaCreada = await Asistencia.create({
       tipo: tipoInterno,
       hora,
       fecha,
       cursoId,
+      usuarioId,
     });
     console.log("pas");
     res.status(200).json({
