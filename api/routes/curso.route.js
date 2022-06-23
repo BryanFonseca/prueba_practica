@@ -18,23 +18,34 @@ router.post(
   "/crear",
   [
     // validation
-    /*
-    body("nombre")
-      .isString()
-      .withMessage("El nombre debe ser un string")
+    body("usuarioId")
+      .isNumeric()
+      .withMessage("El id de usuario debe ser un número.")
       .custom(async (value) => {
-        const [encontrado] = await Usuario.findAll({
+        const [usuario] = await Usuario.findAll({
           where: {
-            nombre: value,
+            id: value,
           },
         });
-        console.log(encontrado);
-        if (encontrado) {
-          throw new Error("Ya existe un usuario con ese nombre");
+        if (!usuario)
+          throw new Error("No existe usuario con el id proporcionado.");
+        if (usuario.rol === true)
+          throw new Error("Un administrador no puede tener cursos asignados.");
+        return true;
+      })
+      .custom(async (value) => {
+        const cursosCount = await Curso.count({
+          where: {
+            usuarioId: value,
+          },
+        });
+        // un docente no puede tener más de 3 cursos asociados
+        if (cursosCount >= 3) {
+          throw new Error(
+            "Un docente no puede tener más de tres cursos asociados."
+          );
         }
       }),
-    body("apellido").isString().withMessage("El apellido debe ser un string"),
-    */
   ],
   cursoController.createByUserId
 );

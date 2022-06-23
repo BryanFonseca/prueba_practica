@@ -8,7 +8,11 @@ import CursoForm from "../../components/forms/CursoForm";
 
 const Agregar = (props) => {
   const adminCtx = useContext(AdminContext);
-  const { sendRequest: agregarCursoRequest } = useHttp();
+  const {
+    hasError,
+    serverErrorMessage,
+    sendRequest: agregarCursoRequest,
+  } = useHttp();
   const history = useHistory();
 
   const cancelarHandler = () => {
@@ -26,28 +30,32 @@ const Agregar = (props) => {
         horaSalida: values.horaSalida,
         fechaInicio: values.fechaInicio,
       },
-    }).then((response) => {
-      const docente = adminCtx.docentes.find(
-        (profesor) => profesor.id === +values.profesorId
-      );
-      adminCtx.dispatchCursosAction({
-        type: "ADD",
-        payload: {
-          id: response.cursoId,
-          nombre: values.nombre,
-          horaInicio: values.horaInicio,
-          horaSalida: values.horaSalida,
-          fechaInicio: values.fechaInicio,
-          docente: {
-            id: docente.id,
-            nombre: docente.nombre,
-            apellidos: docente.apellidos,
+    })
+      .then((response) => {
+        const docente = adminCtx.docentes.find(
+          (profesor) => profesor.id === +values.profesorId
+        );
+        adminCtx.dispatchCursosAction({
+          type: "ADD",
+          payload: {
+            id: response.cursoId,
+            nombre: values.nombre,
+            horaInicio: values.horaInicio,
+            horaSalida: values.horaSalida,
+            fechaInicio: values.fechaInicio,
+            docente: {
+              id: docente.id,
+              nombre: docente.nombre,
+              apellidos: docente.apellidos,
+            },
           },
-        },
+        });
+        history.replace("/admin/all");
+        //console.log(response);
+      })
+      .catch((err) => {
+        //console.log(err.message);
       });
-      history.replace("/admin/all");
-      //console.log(response);
-    });
   };
 
   return (
@@ -55,6 +63,7 @@ const Agregar = (props) => {
       <h2>Agregar ...</h2>
       <CursoForm onSubmit={submitHandler} />
       <button onClick={cancelarHandler}>Cancelar</button>
+      {hasError && <p>Error: {serverErrorMessage}</p>}
     </header>
   );
 };

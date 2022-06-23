@@ -1,5 +1,7 @@
 const Curso = require("../models/curso.model");
 const Usuario = require("../models/usuario.model");
+const { validationResult } = require("express-validator");
+const HttpError = require("../utils/http-error");
 
 exports.findAll = async (req, res, next) => {
   try {
@@ -54,6 +56,11 @@ exports.findByUserId = async (req, res, next) => {
 exports.createByUserId = async (req, res, next) => {
   try {
     const { usuarioId, nombre, horaInicio, horaSalida, fechaInicio } = req.body;
+
+    const errors = validationResult(req);
+    console.log(errors.array());
+    if (!errors.isEmpty()) throw new HttpError(errors.array()[0].msg, 422);
+
     const cursoCreado = await Curso.create({
       usuarioId,
       nombre,
