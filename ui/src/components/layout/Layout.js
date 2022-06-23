@@ -20,7 +20,9 @@ const Layout = ({ children, ...props }) => {
           </div>
           <Options />
         </div>
-        <button onClick={logoutHandler}>Cerrar sesión</button>
+        <button className={classes.logoutButton} onClick={logoutHandler}>
+          Cerrar sesión
+        </button>
       </aside>
       <main className={classes.main}>{children}</main>
     </div>

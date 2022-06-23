@@ -39,20 +39,22 @@ export const AdminContextProvider = (props) => {
   useEffect(() => {
     sendRequest({
       method: "GET",
+      url: `${API_BASE_URL}/usuarios/profesores/all`,
+    }).then(({ data: usuarios }) => {
+      setDocentes(usuarios);
+    });
+  }, []);
+
+  const updateAsistencias = () => {
+    sendRequest({
+      method: "GET",
       url: `${API_BASE_URL}/asistencia/all`,
     }).then(({ data: asistencias }) => {
       setAsistencia(asistencias);
     });
-  }, []);
-
+  };
   useEffect(() => {
-    sendRequest({
-      method: "GET",
-      url: `${API_BASE_URL}/usuarios/profesores/all`,
-    }).then(({ data: usuarios }) => {
-      // aquí técnicamente los usuarios no son solo docentes, pero de cualquier manera se filtrará con id
-      setDocentes(usuarios);
-    });
+    updateAsistencias();
   }, []);
 
   return (
@@ -62,6 +64,7 @@ export const AdminContextProvider = (props) => {
         dispatchCursosAction,
         asistencia,
         docentes,
+        updateAsistencias,
       }}
     >
       {props.children}

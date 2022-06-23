@@ -24,7 +24,11 @@ Curso.belongsTo(Usuario);
 Usuario.hasMany(Asistencia);
 Asistencia.belongsTo(Usuario);
 
-Curso.hasMany(Asistencia);
+// si se eliminar un curso, se deben eliminar las asistencias asociadas
+Curso.hasMany(Asistencia, {
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
 Asistencia.belongsTo(Curso);
 
 const app = express();

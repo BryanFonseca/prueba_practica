@@ -24,6 +24,7 @@ const CursoItem = ({
       },
     }).then((data) => {
       adminCtx.dispatchCursosAction({ type: "DELETE", payload: { id } });
+      adminCtx.updateAsistencias();
     });
   };
 

@@ -11,10 +11,10 @@ const Options = ({ children }) => {
   if (userInfo.isAdmin) {
     opciones = (
       <>
-        <NavLink to="/admin/all">
+        <NavLink activeClassName={classes.activeLink} to="/admin/all">
           <li>Cursos</li>
         </NavLink>
-        <NavLink to="/admin/asistencia">
+        <NavLink activeClassName={classes.activeLink} to="/admin/asistencia">
           <li>Asistencia</li>
         </NavLink>
       </>

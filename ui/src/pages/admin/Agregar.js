@@ -59,12 +59,16 @@ const Agregar = (props) => {
   };
 
   return (
-    <header>
-      <h2>Agregar ...</h2>
-      <CursoForm onSubmit={submitHandler} />
-      <button onClick={cancelarHandler}>Cancelar</button>
-      {hasError && <p>Error: {serverErrorMessage}</p>}
-    </header>
+    <>
+      <header>
+        <h2>Agregar Curso</h2>
+      </header>
+      <section>
+        <CursoForm onSubmit={submitHandler} />
+        <button onClick={cancelarHandler}>Cancelar</button>
+        {hasError && <p>Error: {serverErrorMessage}</p>}
+      </section>
+    </>
   );
 };
 

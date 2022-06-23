@@ -93,8 +93,10 @@ const LoginFormik = () => {
           Iniciar sesión
         </button>
       </div>
-      {isLoading && <p>Cargando...</p>}
-      {serverErrorMessage && <p>{serverErrorMessage}</p>}
+      {isLoading && <p className={classes.feedback}>Cargando...</p>}
+      {serverErrorMessage && (
+        <p className={classes.feedback}>{serverErrorMessage}</p>
+      )}
     </form>
   );
 };

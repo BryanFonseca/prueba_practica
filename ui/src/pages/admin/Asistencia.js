@@ -20,9 +20,14 @@ const Asistencia = ({ children }) => {
     asistenciaComps = null;
   }
   return (
-    <div className="scrollableContainer">
-      <List>{asistenciaComps}</List>
-    </div>
+    <>
+      <header>
+        <h2>Todas las asistencias</h2>
+      </header>
+      <section className="scrollableContainer">
+        <List>{asistenciaComps}</List>
+      </section>
+    </>
   );
 };
 

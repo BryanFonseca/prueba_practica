@@ -24,16 +24,21 @@ const Editar = () => {
 
   return (
     <>
-      <CursoForm
-        id={id}
-        nombre={nombre}
-        horaInicio={horaInicio}
-        horaSalida={horaSalida}
-        fechaInicio={fechaInicio}
-        profesorId={profesorId}
-        onSubmit={submitHandler}
-      />
-      <button onClick={cancelarHandler}>Cancelar</button>
+      <header>
+        <h2>Editar Curso</h2>
+      </header>
+      <section>
+        <CursoForm
+          id={id}
+          nombre={nombre}
+          horaInicio={horaInicio}
+          horaSalida={horaSalida}
+          fechaInicio={fechaInicio}
+          profesorId={profesorId}
+          onSubmit={submitHandler}
+        />
+        <button onClick={cancelarHandler}>Cancelar</button>
+      </section>
     </>
   );
 };

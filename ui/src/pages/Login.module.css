@@ -1,6 +1,3 @@
-.container {
-}
-
 .loginForm {
   font-size: 1.2rem;
   display: flex;
@@ -11,6 +8,7 @@
   border-radius: 0.6em;
   padding: 2em;
   width: 20rem;
+  position: relative;
 }
 
 .loginForm label {
@@ -61,4 +59,11 @@
 
 .loginForm .button:hover {
   cursor: pointer;
+}
+
+.feedback {
+  position: absolute;
+  top: 0;
+  transform: translateY(-200%);
+  text-transform: uppercase;
 }

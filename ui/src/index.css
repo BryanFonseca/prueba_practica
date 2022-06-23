@@ -44,3 +44,11 @@ a:active {
   text-decoration: none;
   color: inherit;
 }
+
+button {
+  padding: 0.2em 0.4em;
+}
+
+button:hover {
+  cursor: pointer;
+}

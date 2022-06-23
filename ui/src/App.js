@@ -16,10 +16,25 @@ import Editar from "./pages/admin/Editar";
 function App() {
   const { userInfo } = useContext(AuthContext);
   const adminCtx = useContext(AdminContext);
+
+  const isLoggedIn = !!userInfo.token;
+  let redirectOnFirstLoad;
+  if (isLoggedIn) {
+    // este valor no está diponible durante el primer renderizado.
+    // debería user useEffect dependiente en userInfo.token y estado
+    // local para implementar la redirección cuando aquel valor esté disponible
+    if (userInfo.isAdmin) {
+      redirectOnFirstLoad = <Redirect to="/admin/all" />;
+    } else {
+      redirectOnFirstLoad = <Redirect to="/docente" />;
+    }
+  } else {
+    redirectOnFirstLoad = <Redirect to="/login" />;
+  }
   return (
     <Switch>
       <Route path="/" exact>
-        <Login />
+        {redirectOnFirstLoad}
       </Route>
       <Route path="/login">
         <Login />
@@ -44,7 +59,7 @@ function App() {
 
         {userInfo.isAdmin === false ? (
           <AppContextProvider>
-            <Route path="/docente/">
+            <Route path="/docente">
               <Usuario />
             </Route>
           </AppContextProvider>

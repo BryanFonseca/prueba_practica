@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ControlBar from "../../components/ControlBar";
 import CursoItem from "../../components/CursoItem";
 import List from "../../components/List";
@@ -6,7 +6,13 @@ import AdminContext from "../../context/admin-context";
 
 const AllCursos = () => {
   const { cursos } = useContext(AdminContext);
-  const [cursosLocal, setCursosLocal] = useState(cursos);
+  const [cursosLocal, setCursosLocal] = useState([]);
+
+  useEffect(() => {
+    setCursosLocal(cursos);
+  }, [cursos]);
+
+  if (!cursosLocal) return null;
 
   const filtrarHandler = (e) => {
     // esto es muy imperativo
