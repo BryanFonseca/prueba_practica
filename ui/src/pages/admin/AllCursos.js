@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ControlBar from "../../components/ControlBar";
 import CursoItem from "../../components/CursoItem";
 import List from "../../components/List";
@@ -6,9 +6,21 @@ import AdminContext from "../../context/admin-context";
 
 const AllCursos = () => {
   const { cursos } = useContext(AdminContext);
+  const [cursosLocal, setCursosLocal] = useState(cursos);
+
+  const filtrarHandler = (e) => {
+    // esto es muy imperativo
+    const docenteId = +e.target.value;
+    if (!docenteId) {
+      setCursosLocal(cursos);
+      return;
+    }
+    setCursosLocal(cursos.filter((curso) => curso.docente.id === docenteId));
+  };
+
   let cursosComponents;
-  if (cursos.length > 0) {
-    cursosComponents = cursos.map((curso) => (
+  if (cursosLocal.length > 0) {
+    cursosComponents = cursosLocal.map((curso) => (
       <CursoItem
         key={curso.id}
         id={curso.id}
@@ -26,7 +38,7 @@ const AllCursos = () => {
       <header>
         <h2>Todos los Cursos</h2>
       </header>
-      <ControlBar />
+      <ControlBar onFilter={filtrarHandler} />
       <section className="scrollableContainer">
         <List>{cursosComponents}</List>
       </section>

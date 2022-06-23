@@ -2,3 +2,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+.filterContainer select {
+  margin-left: 0.5em;
+}

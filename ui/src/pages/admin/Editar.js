@@ -10,6 +10,7 @@ const Editar = () => {
   };
 
   const submitHandler = (values) => {
+    alert("Aún por implementar :)");
     console.log(values);
   };
 
