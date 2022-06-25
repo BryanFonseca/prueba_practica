@@ -5,11 +5,14 @@ import Options from "./Options";
 import AuthContext from "../../context/auth-context";
 
 const Layout = ({ children, ...props }) => {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo, dispatchLogout } = useContext(AuthContext);
   const history = useHistory();
+
   const logoutHandler = () => {
+    dispatchLogout({ type: "LOGOUT", payload: null });
     history.replace("/login");
   };
+
   return (
     <div className={classes.layoutContainer}>
       <aside className={classes.sideBar}>

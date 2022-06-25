@@ -3,6 +3,13 @@ import { createContext, useState, useReducer, useEffect } from "react";
 // fill up for autocompletion help
 const AuthContext = createContext({});
 
+const initialUserInfoState = {
+  usuarioId: null,
+  nombre: null,
+  apellido: null,
+  token: null,
+};
+
 const userInfoReducer = (state, action) => {
   if (action.type === "LOGIN") {
     return {
@@ -12,16 +19,14 @@ const userInfoReducer = (state, action) => {
       isAdmin: action.payload.isAdmin,
     };
   }
+  if (action.type === "LOGOUT") {
+    return {
+      ...initialUserInfoState,
+    };
+  }
   return {
     ...state,
   };
-};
-
-const initialUserInfoState = {
-  usuarioId: null,
-  nombre: null,
-  apellido: null,
-  token: null,
 };
 
 let isInitial = true;
@@ -48,6 +53,11 @@ export const AuthContextProvider = (props) => {
     dispatchUserAction(action);
   };
 
+  const dispatchLogout = (action) => {
+    localStorage.removeItem("authData");
+    dispatchUserAction(action);
+  };
+
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
@@ -62,6 +72,7 @@ export const AuthContextProvider = (props) => {
         userInfo,
         dispatchUserAction,
         dispatchLogin,
+        dispatchLogout,
       }}
     >
       {props.children}
