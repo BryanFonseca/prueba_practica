@@ -12,6 +12,8 @@ Para cargar los usuarios predeterminados en la base de datos, ejecutar en una nu
 $ docker-compose exec api node seed.db.js
 ```
 
+Por defecto el frontend estará disponible en: http://localhost:8888 y el backend en http://localhost:6868
+
 ### Si se requiere realizar cambios
 
 Después de hacer un cambio en cualquiera de los tres servicios, se deben reconstruir las imágenes para reflejar los cambios.
@@ -29,6 +31,4 @@ $ docker-compose up -d --no-deps --build ui
 
 ## Puertos por defecto
 
-El frontend estará disponible en el puerto 8888.
-
-El backend en el puerto 6868.
+Los puertos por defecto pueden cambiarse usando el archivo .env en el directorio raiz del proyecto.
